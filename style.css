@@ -4,6 +4,7 @@ body, html {
     overflow: hidden;
     width: auto;
     height: 100vh;
+    font-family: 'sans-serif';
 }
 
 #renderCanvas {
@@ -29,14 +30,15 @@ body, html {
     display: flex;
     position: absolute;
     top: 5%;
-    margin: 0 2%;
-    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    max-width: 950px; /* Ajoutez une largeur maximale pour une meilleure lisibilité */
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px; /* Augmenter la marge intérieure pour plus d'espace */
     border-radius: 10px; /* Arrondir les coins pour un look plus moderne */
     box-shadow: 4px 4px 15px rgba(198, 198, 198, 0.6); /* Ajouter une ombre légère pour la profondeur */
     z-index: 10;
-  }
 
 #filters button {
     display: inline-block;
