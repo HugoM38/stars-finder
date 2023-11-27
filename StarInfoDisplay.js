@@ -23,6 +23,10 @@ class StarInfoDisplay {
       this.popupElement.appendChild(closeButton);
       // Affichage de la pop-up
       this.popupElement.style.display = 'block';
+      // placer la pop-up au niveau du clic de souris :
+      this.popupElement.style.left = `${event.clientX + 100}px`;
+      this.popupElement.style.top = `${event.clientY + 100}px`;
+
     }
   
     hidePopup() {
