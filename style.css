@@ -39,6 +39,7 @@ body, html {
     border-radius: 10px; /* Arrondir les coins pour un look plus moderne */
     box-shadow: 4px 4px 15px rgba(198, 198, 198, 0.6); /* Ajouter une ombre légère pour la profondeur */
     z-index: 10;
+}
 
 #filters button {
     display: inline-block;
