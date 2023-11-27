@@ -14,7 +14,7 @@ class StarInfoDisplay {
       this.popupElement.style.display = 'block';
       
       const closeButton = document.createElement('button');
-      closeButton.innerText = 'Close';
+      closeButton.innerText = 'X';
       closeButton.addEventListener('click', () => {
         this.hidePopup();
       });
