@@ -35,7 +35,7 @@ function updateSceneWithFilteredStars(filteredStars) {
             scaledZ = 0;
 
 
-            
+
         } else {
             scaledX = x * scaleDistance;
             scaledY = y * scaleDistance;
@@ -59,27 +59,22 @@ function updateSceneWithFilteredStars(filteredStars) {
     scene.render();
 }
 
-function filterStars(criteria, point = { x: 0, y: 0, z: 0 }) {
+function filterStars(criteria, numberToDisplay) {
 
     let filteredStarPositions;
 
     switch (criteria) {
         case 'hottest':
-            filteredStarPositions = starPositions.sort((a, b) => b.heat - a.heat).slice(0, 50);
+            filteredStarPositions = starPositions.sort((a, b) => b.ci - a.ci).slice(0, numberToDisplay);
             break;
         case 'brightest':
-            filteredStarPositions = starPositions.sort((a, b) => b.brightness - a.brightness).slice(0, 50);
-            break;
-        case 'biggest':
-            filteredStarPositions = starPositions.sort((a, b) => b.size - a.size).slice(0, 50);
+            filteredStarPositions = starPositions.sort((a, b) => b.brightness - a.brightness).slice(0, numberToDisplay);
             break;
         case 'closest':
-            filteredStarPositions = starPositions.sort((a, b) => calculateDistance(a, point) - calculateDistance(b, point)).slice(0, 50);
+            filteredStarPositions = starPositions.sort((a, b) => calculateDistance(a, { x: 0, y: 0, z: 0 }) - calculateDistance(b, { x: 0, y: 0, z: 0 })).slice(0, numberToDisplay);
             break;
-        case 'number':
-            const numberToDisplay = parseInt(point, 10); // Renommez la variable pour plus de clarté
-            filteredStarPositions = starPositions.slice(0, numberToDisplay);
-            break;
+        case 'showAll':
+            filteredStarPositions = starPositions
 
         default:
             filteredStarPositions = starPositions;
@@ -159,17 +154,24 @@ const createScene = (starPositions) => {
     return scene;
 };
 
-document.getElementById('hottest').addEventListener('click', () => filterStars('hottest'));
-document.getElementById('brightest').addEventListener('click', () => filterStars('brightest'));
-document.getElementById('biggest').addEventListener('click', () => filterStars('biggest'));
-document.getElementById('closest').addEventListener('click', () => filterStars('closest', { x: 0, y: 0, z: 0 })); // Ajout de cet événement
-document.getElementById('showStars').addEventListener('click', () => {
+document.getElementById('hottest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
-    filterStars('number', numberOfStars); // Utilisez 'number' comme critère et passez le nombre d'étoiles
+    filterStars('hottest', numberOfStars);
+});
+document.getElementById('brightest').addEventListener('click', () => {
+    const numberOfStars = document.getElementById('numberInput').value;
+    filterStars('brightest', numberOfStars);
+});
+document.getElementById('closest').addEventListener('click', () => {
+    const numberOfStars = document.getElementById('numberInput').value;
+    filterStars('closest', numberOfStars);
+});
+document.getElementById('showStars').addEventListener('click', () => {
+    filterStars('showAll', null); // Utilisez 'number' comme critère et passez le nombre d'étoiles
 });
 
-  // event listener pour fermer la popup
-  document.getElementById('closePopup').addEventListener('click', () => {
+// event listener pour fermer la popup
+document.getElementById('closePopup').addEventListener('click', () => {
     document.getElementById('starPopup').style.display = "none";
 });
 
