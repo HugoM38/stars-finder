@@ -16,7 +16,7 @@ body, html {
     display: none; /* Hide the popup by default */
     position: absolute;
     padding: 10px;
-    background: #80ccfe;
+    background: #5f74ff;
     border: 1px solid rgb(204, 204, 204);
     border-radius: 5px;
     z-index: 101; /* Ensures it's above other items */
@@ -34,7 +34,7 @@ body, html {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px; /* Augmenter la marge intérieure pour plus d'espace */
     border-radius: 10px; /* Arrondir les coins pour un look plus moderne */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajouter une ombre légère pour la profondeur */
+    box-shadow: 4px 4px 15px rgba(198, 198, 198, 0.6); /* Ajouter une ombre légère pour la profondeur */
     z-index: 10;
   }
 
@@ -45,7 +45,7 @@ body, html {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #80ccfe; /* Couleur de fond pour les boutons */
+    background-color: #5f74ff; /* Couleur de fond pour les boutons */
     color: #fff; /* Couleur du texte pour une meilleure lisibilité */
 }
 
@@ -78,7 +78,7 @@ body, html {
 
 #showStars:hover,
 #filters button:hover {
-    background-color: #80ccfe; /* Changement de couleur au survol pour un effet interactif */
+    background-color: #5f74ff; /* Changement de couleur au survol pour un effet interactif */
 }
 
 #closePopup {
