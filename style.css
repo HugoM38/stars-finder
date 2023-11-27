@@ -16,21 +16,21 @@ body, html {
     display: none; /* Hide the popup by default */
     position: absolute;
     padding: 10px;
-    background: #3498db;
+    background: #80ccfe;
     border: 1px solid black;
     border-radius: 5px;
     z-index: 101; /* Ensures it's above other items */
-    top: 10%;
-    left: 50%; /* Centers the popup horizontally */
     transform: translate(-50%, -50%); /* Adjusts the centering based on the popup's size */
     max-width: 300px; /* To prevent the popup from being too wide */
     box-shadow: 0 4px 8px rgba(57, 57, 57, 0.1); /* Optional: adds shadow for depth */
 }
 
 #filters {
+    display: flex;
     position: absolute;
-    top: 10%;
-    left: 10%;
+    top: 5%;
+    margin: 0 2%;
+    width: auto;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px; /* Augmenter la marge intérieure pour plus d'espace */
     border-radius: 10px; /* Arrondir les coins pour un look plus moderne */
@@ -45,8 +45,16 @@ body, html {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #3498db; /* Couleur de fond pour les boutons */
+    background-color: #80ccfe; /* Couleur de fond pour les boutons */
     color: #fff; /* Couleur du texte pour une meilleure lisibilité */
+}
+
+#allStarsNumberDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #ccc; /* Ajouter une bordure pour un aspect plus défini */
 }
 
 #numberInput {
@@ -54,6 +62,7 @@ body, html {
     margin: 5px;
     border: 1px solid #ccc; /* Ajouter une bordure pour un aspect plus défini */
     border-radius: 5px;
+    width: 140px;
 }
 
 #showStars {
@@ -69,14 +78,15 @@ body, html {
 
 #showStars:hover,
 #filters button:hover {
-    background-color: #2980b9; /* Changement de couleur au survol pour un effet interactif */
+    background-color: #80ccfe; /* Changement de couleur au survol pour un effet interactif */
 }
 
 #closePopup {
     position: absolute;
     top: 10px;
     right: 10px;
-    padding: 5px;
+    width: 20px;
+    height: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -87,4 +97,5 @@ body, html {
 #closePopup:hover {
     background-color: #c0392b; /* Changement de couleur au survol pour un effet interactif */
     color: #141414;
+    border: 1px solid #141414;
 }
