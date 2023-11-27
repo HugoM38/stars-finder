@@ -28,7 +28,7 @@
 
         // Ajouter de nouvelles étoiles basées sur les étoiles filtrées
         filteredStars.forEach(starData => {
-            const { x, y, z, lum, absmag, con, proper } = starData;
+            const { x, y, z, lum, absmag, con, proper, ci } = starData;
             const scaledX = x * scaleDistance;
             const scaledY = y * scaleDistance;
             const scaledZ = z * scaleDistance;
@@ -36,8 +36,8 @@
             const brightness = absmagToBrightness(absmag);
             const name = proper || starData.bf || starData.hr;
 
-            // Utilisez votre fonction existante pour ajouter les étoiles à la scène
-            stars.implementStars(scaledX, scaledY, scaledZ, "https://i.imgur.com/lCmwJRT.jpg", "sphere", {
+            // Utilisez votre fonction existante pour ajouter les étoiles à la scène 
+            stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
                 heat: starData.vx,
                 size,
                 brightness,
@@ -83,6 +83,20 @@
         updateSceneWithFilteredStars(filteredStarPositions);
     }
 
+    function getStarColorImage(ci) {
+        if(ci < 0) {
+            return "https://i.imgur.com/AJ5pFUS.jpg"
+        } else if (ci >= 0 && ci < 1) {
+            return "https://i.imgur.com/exxVBKc.png"
+        } else if (ci >= 1 && ci < 2) {
+            return "https://i.imgur.com/eMNqEqC.png"
+        } else if (ci >= 2 && ci < 3) {
+            return "https://i.imgur.com/lCmwJRT.jpg"
+        } else {
+            return "https://i.imgur.com/C1FwjWU.png"
+        }
+    }
+
     const createScene = (starPositions) => {
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = BABYLON.Color3.Black();  // Changer la couleur de fond à noir
@@ -109,7 +123,7 @@
 
         starPositions.forEach(position => {
 
-            const { x, y, z, lum, absmag, con, proper } = position;
+            const { x, y, z, lum, absmag, con, proper, ci} = position;
             const name = proper || position.bf || position.hr;
             const size = lumToSize(lum);
             const brightness = absmagToBrightness(absmag);
@@ -118,7 +132,7 @@
             const scaledY = y * scaleDistance;
             const scaledZ = z * scaleDistance;
 
-            stars.implementStars(scaledX, scaledY, scaledZ, "https://i.imgur.com/lCmwJRT.jpg", "sphere", {
+            stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
                 heat: position.vx, // Utilisation d'une donnée représentative pour 'heat'
                 size,
                 brightness,
