@@ -16,15 +16,15 @@ body, html {
     display: none; /* Hide the popup by default */
     position: absolute;
     padding: 10px;
-    background: rgb(83, 81, 81);
+    background: #3498db;
     border: 1px solid black;
     border-radius: 5px;
-    z-index: 1000; /* Ensures it's above other items */
+    z-index: 101; /* Ensures it's above other items */
     top: 10%;
     left: 50%; /* Centers the popup horizontally */
     transform: translate(-50%, -50%); /* Adjusts the centering based on the popup's size */
     max-width: 300px; /* To prevent the popup from being too wide */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
+    box-shadow: 0 4px 8px rgba(57, 57, 57, 0.1); /* Optional: adds shadow for depth */
     pointer-events: none; /* Prevents the popup from capturing mouse/click events */
 }
 
@@ -33,7 +33,42 @@ body, html {
     top: 10%;
     left: 10%;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 10; /* Assurez-vous qu'il est au-dessus de la scène de Babylon.js */
+    padding: 20px; /* Augmenter la marge intérieure pour plus d'espace */
+    border-radius: 10px; /* Arrondir les coins pour un look plus moderne */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajouter une ombre légère pour la profondeur */
+    z-index: 10;
   }
+
+#filters button {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #3498db; /* Couleur de fond pour les boutons */
+    color: #fff; /* Couleur du texte pour une meilleure lisibilité */
+}
+
+#numberInput {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc; /* Ajouter une bordure pour un aspect plus défini */
+    border-radius: 5px;
+}
+
+#showStars {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #2ecc71; /* Couleur de fond pour le bouton "Afficher" */
+    color: #fff; /* Couleur du texte pour une meilleure lisibilité */
+}
+
+#showStars:hover,
+#filters button:hover {
+    background-color: #2980b9; /* Changement de couleur au survol pour un effet interactif */
+}

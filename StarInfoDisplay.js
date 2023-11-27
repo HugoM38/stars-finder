@@ -10,7 +10,16 @@ class StarInfoDisplay {
                                      Size: ${starData.size}<br>
                                      Brightness: ${starData.brightness}<br>
                                      Constellation: ${starData.constellation}`;
+                                     
       this.popupElement.style.display = 'block';
+      
+      const closeButton = document.createElement('button');
+      closeButton.innerText = 'Close';
+      closeButton.addEventListener('click', () => {
+        this.hidePopup();
+      });
+      
+      this.popupElement.appendChild(closeButton);
     }
   
     hidePopup() {

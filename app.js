@@ -139,6 +139,10 @@
         const numberOfStars = document.getElementById('numberInput').value;
         filterStars('number', numberOfStars); // Utilisez 'number' comme critère et passez le nombre d'étoiles
     });
+    // event listener pour fermer la popup
+    document.getElementById('closePopup').addEventListener('click', () => {
+        document.getElementById('starPopup').style.display = "none";
+    });
     const firstFiftyStarPositions = starPositions.slice(0, 500);
     const scene = createScene(firstFiftyStarPositions);
     engine.runRenderLoop(() => scene.render());
