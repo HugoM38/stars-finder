@@ -1,0 +1,7 @@
+node_modules/
+.parcel-cache/
+.vscode/
+bibliz-f9be0-firebase-adminsdk-ezhqw-9bd85cea09.json
+bibliz-f9be0-firebase-adminsdk-ezhqw-553403baa5.json
+firebaseInit.js
+dist/

@@ -1,0 +1,36 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#renderCanvas {
+    width: 100%;
+    height: 100%;
+}
+
+#starPopup {
+    display: none; /* Hide the popup by default */
+    position: absolute;
+    padding: 10px;
+    background: rgb(83, 81, 81);
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 1000; /* Ensures it's above other items */
+    top: 10%;
+    left: 50%; /* Centers the popup horizontally */
+    transform: translate(-50%, -50%); /* Adjusts the centering based on the popup's size */
+    max-width: 300px; /* To prevent the popup from being too wide */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
+    pointer-events: none; /* Prevents the popup from capturing mouse/click events */
+}
+
+#filters {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10; /* Assurez-vous qu'il est au-dessus de la scène de Babylon.js */
+  }

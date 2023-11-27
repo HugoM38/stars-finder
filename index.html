@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Projet Babylon</title>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <div id="filters">
+        <button id="hottest">Les étoiles les plus chaudes</button>
+        <button id="brightest">Les étoiles les plus brillantes</button>
+        <button id="biggest">Les étoiles les plus grosses</button>
+        <button id="closest">Les étoiles les plus proches</button>
+        <input type="number" id="numberInput" placeholder="Nombre d'étoiles" min="1" max="500">
+        <button id="showStars">Afficher</button>
+
+        <!-- Ajouter plus de boutons ou un menu déroulant pour les constellations -->
+      </div>
+    <div id="starPopup">
+    <!-- Les informations de l'étoile seront injectées ici par showPopup -->
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
