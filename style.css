@@ -25,7 +25,6 @@ body, html {
     transform: translate(-50%, -50%); /* Adjusts the centering based on the popup's size */
     max-width: 300px; /* To prevent the popup from being too wide */
     box-shadow: 0 4px 8px rgba(57, 57, 57, 0.1); /* Optional: adds shadow for depth */
-    pointer-events: none; /* Prevents the popup from capturing mouse/click events */
 }
 
 #filters {
@@ -71,4 +70,21 @@ body, html {
 #showStars:hover,
 #filters button:hover {
     background-color: #2980b9; /* Changement de couleur au survol pour un effet interactif */
+}
+
+#closePopup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #e74c3c; /* Couleur de fond pour le bouton "Fermer" */
+    color: #fff; /* Couleur du texte pour une meilleure lisibilité */
+}
+
+#closePopup:hover {
+    background-color: #c0392b; /* Changement de couleur au survol pour un effet interactif */
+    color: #141414;
 }
