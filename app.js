@@ -21,9 +21,9 @@ function updateSceneWithFilteredStars(filteredStars) {
     stars.clear(); // Vous devrez implémenter cette méthode dans votre classe Stars
 
     // Ajouter de nouvelles étoiles basées sur les étoiles filtrées
-    filteredStars.forEach(position => {
-        const { x, y, z, lum, absmag, con, proper, ci } = position;
-        const name = proper || position.bf || position.hr;
+    filteredStars.forEach(star => {
+        const { x, y, z, lum, absmag, con, proper, ci } = star;
+        const name = proper || postarsition.bf || star.hr;
         var size;
         var scaledX;
         var scaledY;
@@ -33,9 +33,6 @@ function updateSceneWithFilteredStars(filteredStars) {
             scaledX = 0;
             scaledY = 0;
             scaledZ = 0;
-
-
-
         } else {
             scaledX = x * scaleDistance;
             scaledY = y * scaleDistance;
@@ -44,12 +41,11 @@ function updateSceneWithFilteredStars(filteredStars) {
         }
         const brightness = absmagToBrightness(absmag);
 
-
-
         stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
-            heat: position.vx, // Utilisation d'une donnée représentative pour 'heat'
+            heat: spectralClassToTemperature( star.spect ) + " Kelvins" , // Utilisation de spect pour 'heat'
             size,
-            brightness,
+            // cut brightness 6 number after the dot :
+            brightness: brightness.toFixed(6),
             constellation: con,
             name
         });
@@ -144,10 +140,10 @@ const createScene = (starPositions) => {
         return;
     }
 
-    starPositions.forEach(position => {
+    starPositions.forEach(star => {
 
-        const { x, y, z, lum, absmag, con, proper, ci } = position;
-        const name = proper || position.bf || position.hr;
+        const { x, y, z, lum, absmag, con, proper, ci } = star;
+        const name = proper || star.bf || star.hr;
         var size;
 
         var scaledX;
@@ -159,9 +155,6 @@ const createScene = (starPositions) => {
             scaledX = 0;
             scaledY = 0;
             scaledZ = 0;
-
-
-
         } else {
             scaledX = x * scaleDistance;
             scaledY = y * scaleDistance;
@@ -171,7 +164,7 @@ const createScene = (starPositions) => {
         const brightness = absmagToBrightness(absmag);
 
         stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
-            heat: spectralClassToTemperature( position.spect ) + " Kelvins" , // Utilisation de spect pour 'heat'
+            heat: spectralClassToTemperature( star.spect ) + " Kelvins" , // Utilisation de spect pour 'heat'
             size,
             // cut brightness 6 number after the dot :
             brightness: brightness.toFixed(6),
