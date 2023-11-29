@@ -70,7 +70,7 @@ function spectralClassToTemperature(spectralClass) {
         'M': 3000,
     };
 
-    // Supposons que votre classe spectrale a un format tel que "A0V", et que la lettre soit la première.
+    // Calculez la température en fonction de la classe spectrale, comme "A0V" par exemple :
     const spectralType = spectralClass.charAt(0);
 
     return temperatureMap[spectralType];
