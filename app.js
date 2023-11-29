@@ -82,10 +82,10 @@ function filterStars(criteria, numberToDisplay) {
 
     switch (criteria) {
         case 'hottest':
-            filteredStarPositions = starPositions.sort((a, b) => b.ci - a.ci).slice(0, numberToDisplay);
+            filteredStarPositions = starPositions.sort((a, b) => a.ci - b.ci).slice(0, numberToDisplay);
             break;
-        case 'brightest':
-            filteredStarPositions = starPositions.sort((a, b) => b.brightness - a.brightness).slice(0, numberToDisplay);
+        case 'coldest':
+            filteredStarPositions = starPositions.sort((a, b) => b.ci - a.ci).slice(0, numberToDisplay);
             break;
         case 'closest':
             filteredStarPositions = starPositions.sort((a, b) => calculateDistance(a, { x: 0, y: 0, z: 0 }) - calculateDistance(b, { x: 0, y: 0, z: 0 })).slice(0, numberToDisplay);
@@ -149,18 +149,27 @@ const createScene = (starPositions) => {
         const { x, y, z, lum, absmag, con, proper, ci } = position;
         const name = proper || position.bf || position.hr;
         var size;
+
+        var scaledX;
+        var scaledY;
+        var scaledZ;
+
         if (name == "Sol") {
             size = 0.22567;
+            scaledX = 0;
+            scaledY = 0;
+            scaledZ = 0;
+
+
+
         } else {
+            scaledX = x * scaleDistance;
+            scaledY = y * scaleDistance;
+            scaledZ = z * scaleDistance;
             size = 500;
         }
         const brightness = absmagToBrightness(absmag);
 
-        const scaledX = x * scaleDistance;
-        const scaledY = y * scaleDistance;
-        const scaledZ = z * scaleDistance;
-
-        console.log(spectralClassToTemperature( position.spect ));
         stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
             heat: spectralClassToTemperature( position.spect ) + " Kelvins" , // Utilisation de spect pour 'heat'
             size,
@@ -177,9 +186,9 @@ document.getElementById('hottest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
     filterStars('hottest', numberOfStars);
 });
-document.getElementById('brightest').addEventListener('click', () => {
+document.getElementById('coldest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
-    filterStars('brightest', numberOfStars);
+    filterStars('coldest', numberOfStars);
 });
 document.getElementById('closest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
