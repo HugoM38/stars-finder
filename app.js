@@ -72,7 +72,7 @@ function spectralClassToTemperature(spectralClass) {
     return temperatureMap[spectralType];
 }
 
-function filterStars(criteria, numberToDisplay) {
+function filterStars(criteria, numberToDisplay, constellationValue) {
 
     let filteredStarPositions;
 
@@ -85,9 +85,15 @@ function filterStars(criteria, numberToDisplay) {
             break;
         case 'closest':
             filteredStarPositions = starPositions.sort((a, b) => calculateDistance(a, { x: 0, y: 0, z: 0 }) - calculateDistance(b, { x: 0, y: 0, z: 0 })).slice(0, numberToDisplay);
+            console.log(filteredStarPositions);
             break;
         case 'showAll':
-            filteredStarPositions = starPositions
+            filteredStarPositions = starPositions;
+        case 'constellationsDropdown':
+            filteredStarPositions = starPositions.filter(star => star.con === constellationValue);
+            console.log(constellationValue);
+            console.log(filteredStarPositions);
+            break;
 
         default:
             filteredStarPositions = starPositions;
@@ -177,18 +183,24 @@ const createScene = (starPositions) => {
 
 document.getElementById('hottest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
-    filterStars('hottest', numberOfStars);
+    filterStars('hottest', numberOfStars, null);
 });
 document.getElementById('coldest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
-    filterStars('coldest', numberOfStars);
+    filterStars('brightest', numberOfStars, null);
 });
 document.getElementById('closest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
-    filterStars('closest', numberOfStars);
+    filterStars('closest', numberOfStars, null);
 });
 document.getElementById('showStars').addEventListener('click', () => {
-    filterStars('showAll', null); // Utilisez 'number' comme critère et passez le nombre d'étoiles
+    filterStars('showAll', null, null); // Utilisez 'number' comme critère et passez le nombre d'étoiles
+});
+
+document.getElementById('constellationsDropdown').addEventListener('change', function() {
+    const selectedValue = this.value; 
+    console.log(selectedValue);
+    filterStars('constellationsDropdown', null, selectedValue);
 });
 
 // event listener pour fermer la popup
