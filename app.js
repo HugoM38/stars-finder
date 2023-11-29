@@ -44,7 +44,7 @@ function updateSceneWithFilteredStars(filteredStars) {
         const brightness = absmagToBrightness(absmag);
 
         stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
-            heat: spectralClassToTemperature( star.spect ) + " Kelvins" , // Utilisation de spect pour 'heat'
+            heat: spectralClassToTemperature(star.spect) + " Kelvins", // Utilisation de spect pour 'heat'
             size,
             // cut brightness 6 number after the dot :
             brightness: brightness.toFixed(6),
@@ -62,7 +62,7 @@ function updateSceneWithFilteredStars(filteredStars) {
         var scaledY = coordinates.y * 10000;
         var scaledZ = coordinates.z * 10000;
 
-        stars.implementPlanets(scaledX, scaledY, scaledZ, image , "sphere", {
+        stars.implementPlanets(scaledX, scaledY, scaledZ, image, "sphere", {
             size,
             name
         });
@@ -112,7 +112,7 @@ function filterStars(criteria, numberToDisplay, constellationValue) {
             var x = parseFloat(targetStar.x) * scaleDistance;
             var y = parseFloat(targetStar.y) * scaleDistance;
             var z = parseFloat(targetStar.z) * scaleDistance;
-            camera.setTarget(new BABYLON.Vector3(x,y,z));;
+            camera.setTarget(new BABYLON.Vector3(x, y, z));;
             console.log(filteredStarPositions);
             break;
 
@@ -191,7 +191,7 @@ const createScene = (starPositions) => {
         const brightness = absmagToBrightness(absmag);
 
         stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
-            heat: spectralClassToTemperature( star.spect ) + " Kelvins" , // Utilisation de spect pour 'heat'
+            heat: spectralClassToTemperature(star.spect) + " Kelvins", // Utilisation de spect pour 'heat'
             size,
             // cut brightness 6 number after the dot :
             brightness: brightness.toFixed(6),
@@ -209,7 +209,7 @@ const createScene = (starPositions) => {
         var scaledY = coordinates.y * 10000;
         var scaledZ = coordinates.z * 10000;
 
-        stars.implementPlanets(scaledX, scaledY, scaledZ, image , "sphere", {
+        stars.implementPlanets(scaledX, scaledY, scaledZ, image, "sphere", {
             size,
             name
         });
@@ -233,11 +233,26 @@ document.getElementById('closest').addEventListener('click', () => {
 document.getElementById('showStars').addEventListener('click', () => {
     filterStars('showAll', null, null); // Utilisez 'number' comme critère et passez le nombre d'étoiles
 });
-
-document.getElementById('constellationsDropdown').addEventListener('change', function() {
-    const selectedValue = this.value; 
+document.getElementById('constellationsDropdown').addEventListener('change', function () {
+    const selectedValue = this.value;
     console.log(selectedValue);
     filterStars('constellationsDropdown', null, selectedValue);
+});
+document.getElementById('planetsDropdown').addEventListener('change', function () {
+    const selectedValue = this.value;
+    console.log(selectedValue);
+    if (selectedValue === "all") {
+        camera.position = new BABYLON.Vector3(4.806667, 0, 0)
+    } else {
+        var planet = planets.filter(planet => planet.name === selectedValue)[0];
+        console.log(planet);
+        var scaledX = planet.coordinates.x * 10000;
+        var scaledY = planet.coordinates.y * 10000;
+        var scaledZ = planet.coordinates.z * 10000;
+
+        camera.position = new BABYLON.Vector3(scaledX + 1, scaledY + 1, scaledZ + 1)
+        camera.setTarget(new BABYLON.Vector3(scaledX, scaledY, scaledZ));
+    }
 });
 
 // event listener pour fermer la popup
