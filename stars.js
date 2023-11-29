@@ -61,6 +61,14 @@ class Stars {
             starMesh = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: size }, this.scene);
         }
 
+        if(name == "Saturne") {
+            var torus = BABYLON.MeshBuilder.CreateTorus("torus", {diameter: 0.3, thickness: 0.05}, this.scene);
+            console.log("size",size);
+            torus.position = new BABYLON.Vector3(x, y, z)
+            torus.scaling.y = 0.01;
+            torus.material = material;
+        }
+
         this.starMeshes.push(starMesh);
 
         starMesh.material = material;
