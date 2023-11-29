@@ -16,7 +16,6 @@ class StarInfoDisplay {
       // Ajout des données de l'étoile
       this.popupElement.innerHTML = `Name: ${starData.name}<br>
                                      Heat: ${starData.heat}<br>
-                                     Size: ${starData.size}<br>
                                      Brightness: ${starData.brightness}<br>
                                      Constellation: ${starData.constellation}`;
       // Ajout du bouton de fermeture

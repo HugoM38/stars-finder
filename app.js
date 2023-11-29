@@ -59,6 +59,23 @@ function updateSceneWithFilteredStars(filteredStars) {
     scene.render();
 }
 
+function spectralClassToTemperature(spectralClass) {
+    const temperatureMap = {
+        'O': 40000,
+        'B': 20000,
+        'A': 9000,
+        'F': 7000,
+        'G': 5500,
+        'K': 4000,
+        'M': 3000,
+    };
+
+    // Supposons que votre classe spectrale a un format tel que "A0V", et que la lettre soit la première.
+    const spectralType = spectralClass.charAt(0);
+
+    return temperatureMap[spectralType];
+}
+
 function filterStars(criteria, numberToDisplay) {
 
     let filteredStarPositions;
@@ -143,10 +160,12 @@ const createScene = (starPositions) => {
         const scaledY = y * scaleDistance;
         const scaledZ = z * scaleDistance;
 
+        console.log(spectralClassToTemperature( position.spect ));
         stars.implementStars(scaledX, scaledY, scaledZ, getStarColorImage(ci), "sphere", {
-            heat: position.vx, // Utilisation d'une donnée représentative pour 'heat'
+            heat: spectralClassToTemperature( position.spect ) + " Kelvins" , // Utilisation de spect pour 'heat'
             size,
-            brightness,
+            // cut brightness 6 number after the dot :
+            brightness: brightness.toFixed(6),
             constellation: con,
             name
         });
