@@ -23,7 +23,7 @@ function updateSceneWithFilteredStars(filteredStars) {
     // Ajouter de nouvelles étoiles basées sur les étoiles filtrées
     filteredStars.forEach(star => {
         const { x, y, z, lum, absmag, con, proper, ci } = star;
-        const name = proper || postarsition.bf || star.hr;
+        const name = proper || star.bf || star.hr;
         var size;
         var scaledX;
         var scaledY;
