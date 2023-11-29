@@ -98,15 +98,17 @@ body, html {
 
 #closePopup {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 5px;
+    right: 5px;
     width: 20px;
     height: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
-    background-color: #e74c3c; /* Couleur de fond pour le bouton "Fermer" */
+    background-color: #c64132; /* Couleur de fond pour le bouton "Fermer" */
     color: #fff; /* Couleur du texte pour une meilleure lisibilité */
+    font-size: 13px;
+    font-weight: bold;
 }
 
 #closePopup:hover {
