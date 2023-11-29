@@ -1,5 +1,6 @@
 import Stars from './stars.js';
 import starPositions from './starPositions.json';
+import planets from './planets.json';
 import './style.css';
 import StarInfoDisplay from './starInfoDisplay';
 
@@ -52,6 +53,21 @@ function updateSceneWithFilteredStars(filteredStars) {
         });
     });
 
+    planets.forEach(planet => {
+
+        const { coordinates, name, dist, image } = planet;
+        var size = 0.22567;
+
+        var scaledX = coordinates.x * 10000;
+        var scaledY = coordinates.y * 10000;
+        var scaledZ = coordinates.z * 10000;
+
+        stars.implementPlanets(scaledX, scaledY, scaledZ, image , "sphere", {
+            size,
+            name
+        });
+    });
+
     // Rendre la scène à nouveau
     scene.render();
 }
@@ -92,11 +108,12 @@ function filterStars(criteria, numberToDisplay, constellationValue) {
             filteredStarPositions = starPositions;
         case 'constellationsDropdown':
             filteredStarPositions = starPositions.filter(star => star.con === constellationValue);
-            var x = parseFloat(filteredStarPositions[0].x);
-            var y = parseFloat(filteredStarPositions[0].y);
-            var z = parseFloat(filteredStarPositions[0].z);
-            camera.setTarget(new BABYLON.Vector3(x,y,z));
-            console.log(constellationValue);
+            var targetStar = filteredStarPositions.sort((a, b) => a.absmag - b.absmag)[0]
+            var x = parseFloat(targetStar.x) * scaleDistance;
+            var y = parseFloat(targetStar.y) * scaleDistance;
+            var z = parseFloat(targetStar.z) * scaleDistance;
+            camera.setTarget(new BABYLON.Vector3(x,y,z));;
+            console.log(filteredStarPositions);
             break;
 
         default:
@@ -182,6 +199,22 @@ const createScene = (starPositions) => {
             name
         });
     });
+
+    planets.forEach(planet => {
+
+        const { coordinates, name, dist, image } = planet;
+        var size = 0.22567;
+
+        var scaledX = coordinates.x * 10000;
+        var scaledY = coordinates.y * 10000;
+        var scaledZ = coordinates.z * 10000;
+
+        stars.implementPlanets(scaledX, scaledY, scaledZ, image , "sphere", {
+            size,
+            name
+        });
+    });
+
     return scene;
 };
 
