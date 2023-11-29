@@ -80,6 +80,17 @@ body, html {
     color: #fff; /* Couleur du texte pour une meilleure lisibilité */
 }
 
+#planetsDropdown {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #5f74ff; /* Couleur de fond pour le bouton "Afficher" */
+    color: #fff; /* Couleur du texte pour une meilleure lisibilité */
+}
+
 #showStars {
     display: inline-block;
     padding: 10px;
