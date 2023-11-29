@@ -7,6 +7,7 @@ const canvas = document.getElementById('renderCanvas');
 const engine = new BABYLON.Engine(canvas, true);
 const scaleDistance = 10000;
 let stars;
+var camera;
 
 function absmagToBrightness(absmag) {
     return Math.max(0.1, (15 - absmag) / 15);
@@ -91,8 +92,11 @@ function filterStars(criteria, numberToDisplay, constellationValue) {
             filteredStarPositions = starPositions;
         case 'constellationsDropdown':
             filteredStarPositions = starPositions.filter(star => star.con === constellationValue);
+            var x = parseFloat(filteredStarPositions[0].x);
+            var y = parseFloat(filteredStarPositions[0].y);
+            var z = parseFloat(filteredStarPositions[0].z);
+            camera.setTarget(new BABYLON.Vector3(x,y,z));
             console.log(constellationValue);
-            console.log(filteredStarPositions);
             break;
 
         default:
@@ -120,7 +124,7 @@ const createScene = (starPositions) => {
     var scene = new BABYLON.Scene(engine);
     scene.clearColor = BABYLON.Color3.Black();  // Changer la couleur de fond à noir
     // 4.7841
-    var camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(4.806667, 0, 0), scene);
+    camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(4.806667, 0, 0), scene);
     camera.attachControl(canvas, true);
     camera.minZ = 0; // Minimum range
     camera.minX = 0; // Minimum range
