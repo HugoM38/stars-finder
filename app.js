@@ -25,6 +25,7 @@ function updateSceneWithFilteredStars(filteredStars) {
     // Ajouter de nouvelles étoiles basées sur les étoiles filtrées
     filteredStars.forEach(star => {
         const { x, y, z, lum, absmag, con, proper, ci } = star;
+        console.log(star);
         const name = proper || star.bf || star.hr;
         var size;
         var scaledX;
@@ -98,6 +99,7 @@ function filterStars(criteria, numberToDisplay, constellationValue) {
             filteredStarPositions = starPositions.sort((a, b) => a.ci - b.ci).slice(0, numberToDisplay);
             break;
         case 'coldest':
+            console.log(numberToDisplay);
             filteredStarPositions = starPositions.sort((a, b) => b.ci - a.ci).slice(0, numberToDisplay);
             break;
         case 'closest':
@@ -106,6 +108,7 @@ function filterStars(criteria, numberToDisplay, constellationValue) {
             break;
         case 'showAll':
             filteredStarPositions = starPositions;
+            break;
         case 'constellationsDropdown':
             filteredStarPositions = starPositions.filter(star => star.con === constellationValue);
             var targetStar = filteredStarPositions.sort((a, b) => a.absmag - b.absmag)[0]
@@ -224,7 +227,7 @@ document.getElementById('hottest').addEventListener('click', () => {
 });
 document.getElementById('coldest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
-    filterStars('brightest', numberOfStars, null);
+    filterStars('coldest', numberOfStars, null);
 });
 document.getElementById('closest').addEventListener('click', () => {
     const numberOfStars = document.getElementById('numberInput').value;
